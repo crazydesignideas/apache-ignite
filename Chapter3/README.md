@@ -1,5 +1,5 @@
 #Chapter 3
- Projects
+##Projects
  =============================
  * Hello-world -> Datagrid basics
  * DataGrid -> Hibernate L2 caching 
