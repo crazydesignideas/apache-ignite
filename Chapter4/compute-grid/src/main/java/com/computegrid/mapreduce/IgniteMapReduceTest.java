@@ -40,6 +40,7 @@ public class IgniteMapReduceTest {
 	public static void main(String[] args) {
 		IgniteConfiguration cfg = new IgniteConfiguration();
 		cfg.setPeerClassLoadingEnabled(true);
+		cfg.setClientMode(true);
 		CacheConfiguration<SoccerPlayerKey, SoccerPlayer> playerCacheConfig = new CacheConfiguration<>();
 		playerCacheConfig.setName(PLAYER_JOB_CACHE);
 		playerCacheConfig.setIndexedTypes(SoccerPlayerKey.class, SoccerPlayer.class);
@@ -81,12 +82,12 @@ public class IgniteMapReduceTest {
 				@Override
 				public ComputeJobResultPolicy result(ComputeJobResult res, List<ComputeJobResult> rcvd)
 						throws IgniteException {
-					IgniteException e = res.getException();
-					if (e != null) {
-						if (!(e instanceof IgniteException)) {
-							throw e;
-						} else {
+					IgniteException exception = res.getException();
+					if (exception != null) {
+						if (exception instanceof IgniteException) {
 							return ComputeJobResultPolicy.FAILOVER;
+						} else {
+							throw exception;
 						}
 					} else {
 						return ComputeJobResultPolicy.WAIT;
