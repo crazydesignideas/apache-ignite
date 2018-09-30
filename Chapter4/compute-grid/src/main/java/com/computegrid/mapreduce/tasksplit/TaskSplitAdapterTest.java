@@ -17,6 +17,7 @@ public class TaskSplitAdapterTest {
 	public static void main(String[] args) {
 		IgniteConfiguration cfg = new IgniteConfiguration();
 		cfg.setPeerClassLoadingEnabled(true);
+		cfg.setClientMode(true);
 		CacheConfiguration<SoccerPlayerKey, SoccerPlayer> playerCacheConfig = new CacheConfiguration<>();
 		playerCacheConfig.setName(PLAYER_JOB_CACHE);
 		playerCacheConfig.setIndexedTypes(SoccerPlayerKey.class, SoccerPlayer.class);
