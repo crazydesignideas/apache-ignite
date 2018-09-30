@@ -1,2 +1,5 @@
 #Chapter 4
-Contains compute grid and SQL APIs
+## Projects
+ =============================
+ * Contains compute grid  
+ * SQL APIs
